@@ -12,7 +12,7 @@ const CardContainer = ({ location, imageSrc, title, data }) => {
   return (
     <TouchableOpacity
       onPress={onpress}
-      className="rounded-md border border-gray-300 space-y-2 px-3 py-2 shadow-md bg-white w-[182px] my-2"
+      className="rounded-md border border-gray-300 space-y-2 px-3 py-2 shadow-md bg-white w-1/2  my-2"
     >
       <Image
         source={{ uri: imageSrc }}

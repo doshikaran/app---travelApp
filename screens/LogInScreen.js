@@ -6,13 +6,13 @@ import {
   View,
   ScrollView,
 } from "react-native";
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import CustomInput from "../components/CustomInput";
 import { useForm } from "react-hook-form";
 import CustomButton from "../components/CustomButton";
 import SocialMediaButtons from "../components/SocialMediaButtons";
-import { auth } from "../firebase";
+//import { auth } from "../firebase";
 
 const Regex =
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -28,18 +28,21 @@ const LogInScreen = () => {
   }, []);
 
   const onForgotPasswordPressed = () => {};
-
+  
   const onpress = () => {
     navigation.navigate("SignUp");
   };
 
-  const handleSignUp = () =>{
+  {
+    /*
+const handleSignUp = () =>{
     auth.createUserWithEmailAndPassword(email, password).then(userCredentials => {
       const user = userCredentials.user
       console.log(user)
       console.log(user.email)
     })
     .catch(error => alert(error.message))
+  }*/
   }
 
   return (
@@ -51,7 +54,7 @@ const LogInScreen = () => {
       <Image
         source={{ uri: "https://wallpaperaccess.com/full/903535.jpg" }}
         resizeMode="cover"
-        style={{ width: "100%", aspectRatio: 16/9 }}
+        style={{ width: "100%", aspectRatio: 16 / 9 }}
       />
       <View className=" p-10">
         <CustomInput
@@ -77,18 +80,16 @@ const LogInScreen = () => {
           }}
         />
 
-        <CustomButton 
-       
-        text={"SIGN IN"} />
+        <CustomButton text={"SIGN IN"} />
         <CustomButton
           text="FORGOT PASSWORD"
           type="TERTIARY"
-          onPress={onForgotPasswordPressed}
+          //onPress={onForgotPasswordPressed}
         />
         <View className=" items-center mb-4">
-        <Text className=" text-sm font-semibold">OR</Text>
+          <Text className=" text-sm font-semibold">OR</Text>
         </View>
-        <SocialMediaButtons/>
+        <SocialMediaButtons />
         <CustomButton
           text="CREATE AN ACCOUNT"
           onPress={onpress}

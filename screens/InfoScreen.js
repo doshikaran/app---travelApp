@@ -5,6 +5,7 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
+  Pressable,
 } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -19,6 +20,7 @@ import {
 const InfoScreen = ({ route }) => {
   const navigation = useNavigation();
   const data = route?.params?.param;
+  //const closedOpenColor = data?.open_now_text === "Closed Now" ? 'red' : 'green';
 
   const onpress = () => {
     navigation.navigate("Discover");
@@ -65,11 +67,24 @@ const InfoScreen = ({ route }) => {
                 {data?.price}
               </Text>
             </View>
-            <View className=" bg-teal-400 rounded-2xl p-2">
-              <Text className=" text-[8px] uppercase tracking-widest font-bold">
-                {data?.open_now_text}
-              </Text>
-            </View>
+
+            {data?.open_now_text && (
+              <>
+                {data?.open_now_text === "Closed Now" ? (
+                  <View className=" bg-red-400 rounded-2xl p-2">
+                    <Text className=" text-[8px] uppercase tracking-widest font-bold">
+                      {data?.open_now_text}
+                    </Text>
+                  </View>
+                ) : (
+                  <View className=" bg-teal-400 rounded-2xl p-2">
+                    <Text className=" text-[8px] uppercase tracking-widest font-bold">
+                      {data?.open_now_text}
+                    </Text>
+                  </View>
+                )}
+              </>
+            )}
           </View>
         </View>
 
@@ -90,7 +105,7 @@ const InfoScreen = ({ route }) => {
         {/* ratings, price, bearing*/}
         <View className=" mt-5 flex-row">
           {data?.rating && (
-            <View className=" flex-row space-x-3 items-center bg-slate-100  p-1 w-32 rounded-full">
+            <View className=" flex-row space-x-2 items-center bg-slate-100  p-1 w-30 rounded-full">
               <View className=" bg-red-200 p-2 rounded-lg w-8 h-8 items-center">
                 <AntDesign name="star" size={16} color="black" />
               </View>
@@ -133,7 +148,7 @@ const InfoScreen = ({ route }) => {
         {/* descriptopn */}
         {data?.description && (
           <View className=" mt-5">
-            <Text className=" tracking-widest font-medium text-sm ">
+            <Text className=" tracking-widest font-medium text-xs ">
               {data?.description}
             </Text>
           </View>
@@ -141,7 +156,7 @@ const InfoScreen = ({ route }) => {
 
         {/* cuisine */}
         {data?.cuisine && (
-          <View className=" flex-row gap-2 flex-wrap mt-3 items-center justify-center">
+          <View className=" flex-row gap-2 flex-wrap mt-5 items-center justify-center">
             {data?.cuisine.map((n) => (
               <TouchableOpacity
                 key={n.key}
@@ -153,7 +168,7 @@ const InfoScreen = ({ route }) => {
           </View>
         )}
 
-        <View className=" space-y-2 mt-4 bg-gray-100 rounded-2xl px-4 py-2">
+        <View className=" space-y-2 mt-4 bg-gray-100 rounded-2xl px-3 py-2 items-start flex-col justify-center">
           {data?.phone && (
             <View className="items-center flex-row space-x-6">
               <FontAwesome name="phone" size={18} color="black" />
@@ -177,13 +192,15 @@ const InfoScreen = ({ route }) => {
             </View>
           )}
 
-          <View className="mt-2 p-5 rounded-lg bg-black items-center justify-center mb-12">
-            <Text 
-            onPress={() => console.warn(" booking confirm")}
-            className="text-lg text-white font-semibold uppercase tracking-wider cursor-pointer">
+          {/* book now  */}
+          <Pressable className="mt-2 p-3 rounded-lg bg-black mb-5">
+            <Text
+              onPress={() => console.warn(" booking confirm")}
+              className="text-lg text-white font-semibold uppercase tracking-wider cursor-pointer"
+            >
               Book Now
             </Text>
-          </View>
+          </Pressable>
         </View>
       </ScrollView>
     </SafeAreaView>

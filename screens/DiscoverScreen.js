@@ -73,7 +73,7 @@ const DiscoverScreen = () => {
             setTr_lng(details?.geometry?.viewport?.northeast?.lng);
           }}
           query={{
-            key: "AIzaSyDF2_sEpAHpDKVGNbQA_Ru6xdSezi_jQ3E",
+            key : "",
             language: "en",
           }}
         />
@@ -117,7 +117,7 @@ const DiscoverScreen = () => {
               </TouchableOpacity>
             </View>
 
-            <View className="px-4 mt-8 flex-row items-center justify-evenly flex-wrap">
+            <View className="px-2 mt-5 flex-row items-center justify-evenly flex-wrap space-x-2">
               {results?.length > 0 ? (
                 <>
                   {results?.map((data, i) => (
